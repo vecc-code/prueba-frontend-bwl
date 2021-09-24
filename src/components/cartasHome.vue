@@ -66,15 +66,20 @@
           <v-row>
             <v-col cols="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
-                <div class="titulo-tar margen-iz">TITULO TARJETA</div>
+                <div class="titulo-tar margen-iz">Tareas Pendientes</div>
 
-                <v-divider class="mt-1 mx-3 color-linea"></v-divider>
-                <v-card-text class="mx-auto">
+                <v-divider class="mt-2 mx-3 color-linea"></v-divider>
+                <v-row class="mx-auto mt-1">
+                  <v-col                   
+                  cols="12" class="ml-2 mb-0 pb-0 mt-0 pt-0"
+                  v-for="(item, i ) in itemsPend"
+                  :key="i"              
+                  >
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus doloremque deserunt dolores qui enim autem
+                    {{item.tareasPend}}
                   </p>
-                </v-card-text>
+                  </v-col>          
+                </v-row>                              
               </v-card>
             </v-col>
             <v-col cols="6">
@@ -98,15 +103,20 @@
           <v-row>
             <v-col cols="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
-                <div class="titulo-tar margen-iz">TITULO TARJETA</div>
+                <div class="titulo-tar margen-iz">Tareas Completadas</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
-                <v-card-text class="mx-auto">
+                <v-row class="mx-auto mt-2">
+                  <v-col                   
+                  cols="12" class="ml-2 mb-0 pb-0 mt-0 pt-0"
+                  v-for="(item, i ) in itemsComp"
+                  :key="i"              
+                  >
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus doloremque deserunt dolores qui enim autem
+                    {{item.tareasComp}}
                   </p>
-                </v-card-text>
+                  </v-col>          
+                </v-row>                  
               </v-card>
             </v-col>
             <v-col cols="6">
@@ -114,29 +124,31 @@
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
-                <v-card-text class="mx-auto">
-                  <v-row>
-                    <v-col cols="12"
-                    v-for="(item) in timeZones.zones"
+                <v-row justify="center" class="">
+                  <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12"
+                  class="pb-0 pt-2"
+                  v-for="(item) in timeZones.zones"
                   :key="item.id" >
-                  <v-btn
-                  text      
-                  @click="setHorayClima(item.zoneName)"                                   
-                  >
-                   {{item.zoneName}} 
-                  </v-btn>  
-                      
-                    </v-col>
-                  </v-row>
-                                                    
-                </v-card-text>
+                  <div class="d-flex justify-left">
+                    <v-btn
+                    plain                    
+                    class="zonas"
+                    text                    
+                    @click="setHorayClima(item.zoneName)"                                   
+                    >
+                      {{item.zoneName}} 
+                    </v-btn>                                      
+                  </div>
+                  </v-col>
+                </v-row>  
+                <br>          
               </v-card>
             </v-col>
           </v-row>
         </v-col>
 
         <v-col cols="4">
-          <v-card elevation="2" outlined min min-height="600px">
+          <v-card elevation="2" outlined min min-height="640px">
             <div class="titulo-tar margen-iz">Países Disponibles</div>
             <v-divider class="mt-1 mx-3 color-linea"></v-divider>
             <v-row class="mt-6" justify="space-around">
@@ -157,9 +169,10 @@
                   <v-btn
                   class="titulo-pais"
                   text
+                  plain
                   @click="setPais('MX')"
                   >
-                    Méixco
+                    México
                   </v-btn>
                 </div>
               </v-col>                              
@@ -183,6 +196,7 @@
                 <v-btn
                 class="titulo-pais"
                  text
+                 plain
                  @click="setPais('CA')"
                 >
                   Canadá
@@ -209,6 +223,7 @@
                 <v-btn
                 class="titulo-pais"
                 text
+                plain
                 @click="setPais('US')"
                 >
                   USA
@@ -229,6 +244,16 @@ export default {
   components: {},
   data() {
     return {
+      itemsPend:[
+        {tareasPend: "Ir al Banco"},
+        {tareasPend: "Revisar balance general "},
+        {tareasPend: "Ajustar métricas de diseño"},        
+      ],
+      itemsComp:[
+        {tareasComp: "Terminar la prueba"},
+        {tareasComp: "Debuggear code"},
+        {tareasComp: "Realizar pruebas unitarias"},        
+      ],
       timeZones: [],
       paisName: "",
       paisImg: "",
@@ -296,7 +321,6 @@ p {
   font-weight: 200px;
   font-size: 19px;
   text-align: justify;
-
 }
 .titulo {
   font-family: "Poppins";
@@ -310,7 +334,6 @@ p {
   font-family: "Poppins";
   font: weight 600px;
   font-size: 22px;
-  line-height: 40px;
   color: black;
   
 }
@@ -327,6 +350,22 @@ p {
   line-height: 40px;
   color: black;
   text-align: center;
+}
+.tareas{
+  font-family: "Poppins";
+  font: weight 600px;
+  font-size: 20px;
+  line-height: 40px;
+  color: black;
+}
+.zonas{
+  font-family: "Poppins";
+  font-weight: 200px;
+  font-size: 15px;
+  text-align: justify;
+}
+.lista{
+  list-style: none;
 }
 .linea {
   width: 200px;

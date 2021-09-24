@@ -2,10 +2,24 @@
   <div class="navbar">
     <v-app-bar color="cyan" height="100px" fixed elevate-on-scroll class="">
       <v-row class="mx-auto">
-        <v-btn x-large color="white" depressed plain href="/Home"> Home </v-btn>
-        <v-btn x-large color="white" depressed plain href="/Usuarios">
+        <v-btn x-large text color="white" depressed plain href="/Home"> Home </v-btn>
+        <v-btn x-large text color="white" depressed plain href="/Usuarios">
           Usuarios
         </v-btn>
+        <v-spacer></v-spacer>              
+        <v-avatar
+        class="mt-1"
+        color="primary"
+        size="42">
+         <span class="white--text text-h5">OA</span>
+        </v-avatar>        
+        <v-btn        
+        text
+        color="white"
+        x-large
+        >      
+          Usuario
+        </v-btn>        
       </v-row>
     </v-app-bar>
   </div>
