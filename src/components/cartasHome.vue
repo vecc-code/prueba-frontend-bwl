@@ -5,50 +5,67 @@
         <v-col cols="8">
           <v-row>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
-                <div class="titulo-tar margen-iz">CLIMA</div>
+              <v-card elevation="4" outlined min-height="200px" max-height="380px">
+                <div class="titulo-tar margen-iz">Clima</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
                 <v-card-text class="mx-auto">
-                 <v-row>
-                   <v-col cols="6">
+                 <v-row justify="center" class="mt-1">
+                   <v-col cols="12" xl="4" lg="4" md="4" sm="12" xs="12"
+                   class="mx-auto my-0 py-0">
                      <v-img
+                     class="icono-clima"
+                     contain
                      :src="clima.current.condition.icon"
                      >
                      </v-img>                                            
                    </v-col>
-                   <v-col cols="6">
-                     {{clima.current.temp_c}} C <br/> {{clima.current.condition.text}}
+                   <v-col cols="12" xl="8" lg="8" md="8" sm="12" xs="12"
+                   class="mt-4 mx-0 px-0">
+                     <h1 class="subtitulo">
+                     {{clima.current.temp_c}} C   
+                     </h1>
+                     <div class="d-flex justify-center">
+                       <p class=""> 
+                       {{clima.current.condition.text}}
+                     </p>
+                     </div>
+                     
+                     
                    </v-col>
                  </v-row>
                 </v-card-text>
               </v-card>
             </v-col>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
-                <div class="titulo-tar margen-iz">Pais Seleccionado</div>
+              <v-card elevation="4" outlined min-height="200px" max-height="380px">
+                <div class="titulo-tar margen-iz">País Seleccionado</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
-                <v-card-text class="mx-auto">
-                  <v-row>
-                    <v-col cols="6">
-                      {{paisName}}
+                <div class="d-flex justify-center">
+                  <v-row justify="space-around" justify-sm="center" class="mt-3">
+                    <v-col cols="12" xl="6" lg="6" md="6" sm="4" xs="3"
+                    class="mb-0 pb-0">
+                      <p class="subtitulo mt-6">{{paisName}} </p>                      
                     </v-col>
-                    <v-col cols="6">
+                    <v-col cols="12" xl="6" lg="6" md="6" sm="4" xs="3"
+                    class="mx-auto">
                       <v-img
-                      :src="paisImg"
+                      contain
+                      class="img-bandera-grande"
+                      :src='paisImg'
                       >                        
                       </v-img>
                     </v-col>
                   </v-row>                
-                </v-card-text>
+                </div>
               </v-card>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
+              <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">TITULO TARJETA</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
@@ -61,14 +78,18 @@
               </v-card>
             </v-col>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
+              <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">Hora</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
                 <v-card-text class="mx-auto">
-                  <p>
-                    {{newHora}}
-                  </p>
+                  <v-row class="mt-3" justify="center">
+                    <v-col cols="12">
+                      <h1 class="subtitulo">
+                       {{newHora}}
+                      </h1>
+                    </v-col>
+                  </v-row>                 
                 </v-card-text>
               </v-card>
             </v-col>
@@ -76,7 +97,7 @@
 
           <v-row>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
+              <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">TITULO TARJETA</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
@@ -89,7 +110,7 @@
               </v-card>
             </v-col>
             <v-col cols="6">
-              <v-card elevation="4" outlined min-height="170px">
+              <v-card elevation="4" outlined min-height="280px" >
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
@@ -115,52 +136,84 @@
         </v-col>
 
         <v-col cols="4">
-          <v-card elevation="2" outlined min min-height="559px">
-            <div class="titulo-tar margen-iz">Paises Disponibles</div>
+          <v-card elevation="2" outlined min min-height="600px">
+            <div class="titulo-tar margen-iz">Países Disponibles</div>
             <v-divider class="mt-1 mx-3 color-linea"></v-divider>
-            <v-row>
-              <v-col cols="6">
-                <v-img>
-
-                </v-img>
-              </v-col>
-              <v-col cols="6">
-                <v-btn
-                text
-                @click="setPais('MX')"
+            <v-row class="mt-6" justify="space-around">
+              <v-col cols="6" xl="6" lg="6" md="6" sm="12" xs="12"
+               class="mx-auto">
+                <div class="d-flex justify-center">
+                <v-img
+                class="img-bandera-chica"
+                contain
+                src="../assets/media/banderas/mexicoFlag.png"
                 >
-                  Meixco
-                </v-btn>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="6">
-                <v-img>
-                  
                 </v-img>
+                </div>            
+              </v-col>              
+              <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12"
+              class="mt-3 mx-auto">
+                <div class="d-flex justify-left">
+                  <v-btn
+                  class="titulo-pais"
+                  text
+                  @click="setPais('MX')"
+                  >
+                    Méixco
+                  </v-btn>
+                </div>
+              </v-col>                              
+            </v-row>
+            <v-divider class="mt-4 mx-3"></v-divider>
+            <v-row class="mt-6" justify="space-around">
+              <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12"
+              mx-auto>
+                <div class="d-flex justify-center">
+                <v-img
+                class="img-bandera-chica"
+                contain
+                src="../assets/media/banderas/canadaFlag.png"
+                >                  
+                </v-img>
+                </div>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12"
+              class="mt-3 mx-auto">
+                <div class="d-flex justify-left">
                 <v-btn
+                class="titulo-pais"
                  text
                  @click="setPais('CA')"
                 >
-                  Canada
+                  Canadá
                 </v-btn>
+                </div>
               </v-col>
             </v-row>
-            <v-row>
-              <v-col cols="6">
-                <v-img>
-                  
+            <v-divider class="mt-4 mx-3"></v-divider>
+            <v-row class="mt-6" justify="space-around">
+              <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12"
+              mx-auto>
+                <div class="d-flex justify-center">
+                <v-img
+                class="img-bandera-chica"
+                contain
+                src="../assets/media/banderas/usaFlag.png"
+                >                  
                 </v-img>
+                </div>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12"
+              class="mt-3 mx-auto">
+                <div class="d-flex justify-left">
                 <v-btn
+                class="titulo-pais"
                 text
                 @click="setPais('US')"
                 >
                   USA
                 </v-btn>
+                </div>
               </v-col>
             </v-row>
           </v-card>
@@ -202,16 +255,16 @@ export default {
     async setPais(city){
       switch (city) {
         case "MX":
-          this.paisName = 'Mexico';
-          this.paisImg = 'https://img2.freepng.es/20190613/ytf/kisspng-flag-of-mexico-united-states-national-flag-5d02ebbe376f35.6418073615604725102271.jpg';
+          this.paisName = 'México';
+          this.paisImg = 'https://4.bp.blogspot.com/-raAfjkYY0Ik/USvYXiU_3yI/AAAAAAAADGU/VoL41j2wzZ4/w1200-h630-p-k-no-nu/banderamexicoactual.jpg';
           break;
         case "CA":
-          this.paisName = 'Canada';
-          this.paisImg = '';
+          this.paisName = 'Canadá';
+          this.paisImg = 'https://www.banderas-mundo.es/data/flags/w1600/ca.png';
           break;
           case "US":
           this.paisName = 'US';
-          this.paisImg = '';
+          this.paisImg = 'https://www.nicepng.com/png/full/6-63506_usa-png-clipart-american-flag-icon-png.png';
           break;          
       }
       this.getData(city);
@@ -238,6 +291,13 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
+p {
+  font-family: "Poppins";
+  font-weight: 200px;
+  font-size: 19px;
+  text-align: justify;
+
+}
 .titulo {
   font-family: "Poppins";
   font: weight 700px;
@@ -246,14 +306,27 @@ export default {
   color: black;
   text-align: center;
 }
+.titulo-pais{
+  font-family: "Poppins";
+  font: weight 600px;
+  font-size: 22px;
+  line-height: 40px;
+  color: black;
+  
+}
 .titulo-tar {
   font-family: "Poppins";
   font-size: 20px;
   text-align: left;
   color: rgba(0, 0, 0, 0.4);
 }
-p {
-  text-align: justify;
+.subtitulo{
+  font-family: "Poppins";
+  font: weight 700px;
+  font-size: 38px;
+  line-height: 40px;
+  color: black;
+  text-align: center;
 }
 .linea {
   width: 200px;
@@ -270,5 +343,17 @@ p {
 .margen-iz {
   margin-top: 12px;
   margin-left: 20px;
+}
+.icono-clima{ 
+  display: block;
+  width: 120px;
+}
+.img-bandera-grande{ 
+  display: block;
+  max-width: 140px;
+}
+.img-bandera-chica{ 
+  display: block;
+  max-width: 90px;
 }
 </style>
