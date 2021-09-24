@@ -228,6 +228,7 @@ export default {
       this.hora = await response.json();
       console.log(new Date(this.hora.location.localtime_epoch).toLocaleTimeString());
       this.newHora = new Date(this.hora.location.localtime_epoch).toLocaleTimeString();
+      // var date = new Date(this.hora.location.localtime_epoch)
     },
     
   },
