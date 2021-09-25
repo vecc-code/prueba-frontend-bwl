@@ -421,11 +421,9 @@ export default {
       let response = await fetch(
         "https://api.weatherapi.com/v1/timezone.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" + nombreDeZona
       );
-      this.hora = await response.json();
-      console.log(
-        new Date(this.hora.location.localtime_epoch).toLocaleTimeString()
-      );
-      this.newHora = new Date( this.hora.location.localtime_epoch).toLocaleTimeString();
+      this.hora = await response.json();    
+      this.newHora = new Date( (this.hora.location.localtime_epoch) * 1000 ).toLocaleTimeString();
+      console.log(new Date(this.hora.location.localtime_epoch).toLocaleTimeString());
       // var date = new Date(this.hora.location.localtime_epoch);
     },
     getUserData() {
