@@ -11,14 +11,15 @@
         class="mt-1"
         color="primary"
         size="42">
-         <span class="white--text text-h5">OA</span>
+         <span class="white--text text-h8">AN</span>
         </v-avatar>        
         <v-btn        
         text
         color="white"
         x-large
+        @click="logOut()"
         >      
-          Usuario
+          {{userInfo.nombreCompleto}}
         </v-btn>        
       </v-row>
     </v-app-bar>
@@ -31,10 +32,25 @@ export default {
   data() {
     return {
       texto: "",
+      userInfo: [],
     };
   },
   components: {},
-  methods: {},
+  methods: {
+    getUserData(){
+      const user = JSON.parse(window.sessionStorage.getItem("user"));
+      this.userInfo = user;
+      console.log(this.userInfo);
+    },
+    logOut(){
+      window.sessionStorage.removeItem("key")
+      window.sessionStorage.removeItem("user")
+      this.$router.push({ name: "Login" }); 
+    },
+  },
+  mounted(){
+    this.getUserData();
+  }
 };
 </script>
 

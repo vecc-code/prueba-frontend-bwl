@@ -4,9 +4,13 @@ import router from "./router/index.js";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
+import axios from "axios";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
+
+Vue.prototype.$axios = axios;
+Vue.config.productionTip = false;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAuX9FWlSC7kbW02q8m9FyVbE92jML1x1Q",

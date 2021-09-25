@@ -2,9 +2,9 @@
   <div class="cartasHome">
     <v-container fluid>
       <v-row class="mt-4">
-        <v-col cols="8">
+        <v-col cols="12" lg="8">
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">Clima</div>
 
@@ -37,7 +37,7 @@
                 </v-card-text>
               </v-card>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">País Seleccionado</div>
 
@@ -64,7 +64,7 @@
           </v-row>
 
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">Tareas Pendientes</div>
 
@@ -82,7 +82,7 @@
                 </v-row>                              
               </v-card>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">Hora</div>
 
@@ -101,7 +101,7 @@
           </v-row>
 
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="200px" max-height="380px">
                 <div class="titulo-tar margen-iz">Tareas Completadas</div>
 
@@ -119,11 +119,11 @@
                 </v-row>                  
               </v-card>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" lg="6">
               <v-card elevation="4" outlined min-height="280px" >
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
-                <v-divider class="mt-1 mx-3 color-linea"></v-divider>
+                <v-divider class="mt-1 mx-3 color-linea"></v-divider>              
                 <v-row justify="center" class="">
                   <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12"
                   class="pb-0 pt-2"
@@ -147,7 +147,7 @@
           </v-row>
         </v-col>
 
-        <v-col cols="4">
+        <v-col cols="12" lg="4">
           <v-card elevation="2" outlined min min-height="640px">
             <div class="titulo-tar margen-iz">Países Disponibles</div>
             <v-divider class="mt-1 mx-3 color-linea"></v-divider>
@@ -254,17 +254,18 @@ export default {
         {tareasComp: "Debuggear code"},
         {tareasComp: "Realizar pruebas unitarias"},        
       ],
-      timeZones: [],
+      timeZones:[],
       paisName: "",
       paisImg: "",
       clima: [],
       newHora: null,
+      userInfo:[],
       };
   },
   mounted() {
     this.setPais("MX");
     //this.setHorayClima(this.timeZones.zones[0].zoneName); 
-    
+    this.getUserData();
   },
   methods:{
     async getData(city) {
@@ -307,6 +308,11 @@ export default {
       console.log(new Date(this.hora.location.localtime_epoch).toLocaleTimeString());
       this.newHora = new Date(this.hora.location.localtime_epoch).toLocaleTimeString();
       // var date = new Date(this.hora.location.localtime_epoch)
+    },
+    getUserData(){
+      const user = JSON.parse(window.sessionStorage.getItem("user"));
+      this.userInfo = user;
+      console.log(this.userInfo);
     },
     
   },
