@@ -1,7 +1,7 @@
 <template>
-  <body>      
+  <body>
     <div class="degradado"></div>
-    <div class="center">          
+    <div class="center">
       <h1 style="color: #00bcd4">Bienvenido</h1>
       <v-card class="mx-auto px-6" max-width="500" elevation="0">
         <v-window v-model="$store.state.loginStep">
@@ -26,13 +26,13 @@
             </v-form>
 
             <v-card-actions class="mb-6 mt-4">
-              <v-btn 
-              raised 
-              block 
-              outlined 
-              color="blue" 
-              elevation="6"
-              @click="login()"
+              <v-btn
+                raised
+                block
+                outlined
+                color="blue"
+                elevation="6"
+                @click="login()"
               >
                 INICIAR SESION
               </v-btn>
@@ -59,126 +59,127 @@
           <v-window-item :value="1">
             <p class="mt-6 titulo">Crear una cuenta</p>
             <v-form v-model="valid">
-
-            <v-text-field
-              prepend-icon="mdi-account"
-              label="Correo Electronico"
-              type="text"
-              class="email"
-              v-model="form.correo"
-              :rules="emailRules"
-            >
-            </v-text-field>
-            <v-row class="">
-              <v-col
-                class="mb-0 pb-0"
-                cols="12"
-                xl="6"
-                lg="6"
-                md="6"
-                sm="12"
-                xs="12"
+              <v-text-field
+                prepend-icon="mdi-account"
+                label="Correo Electronico"
+                type="text"
+                class="email"
+                v-model="form.correo"
+                :rules="emailRules"
               >
-                <v-text-field
-                  prepend-icon="mdi-lock"
-                  label="Contraseña"
-                  type="text"     
-                  v-model="form.pass"   
-                                    
+              </v-text-field>
+              <v-row class="">
+                <v-col
+                  class="mb-0 pb-0"
+                  cols="12"
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="12"
+                  xs="12"
                 >
-                </v-text-field>
-              </v-col>
-            <v-col class="" cols="12" xl="6" lg="6" md="6" sm="12" xs="12">
-            <v-text-field
-                  prepend-icon="mdi-lock"
-                  label="Confirmar Contraseña"
-                  type="text"    
-                  v-model="form.confirmPass"         
-                  :rules="passRules"         
-                >
-                </v-text-field>
-              </v-col> 
-            </v-row>             
-            <v-text-field
-              prepend-icon="mdi-account"
-              label="Nombre Completo"
-              type="text"
-              class=""
-              v-model="form.nombreCompleto"
-            >
-            </v-text-field> 
-            <v-card-actions class="mb-6 mt-4">
-              <v-btn 
-              block 
-              outlined 
-              color="blue" 
-              elevation="6"
-              @click="registerUser(form)"              
+                  <v-text-field
+                    prepend-icon="mdi-lock"
+                    label="Contraseña"
+                    type="text"
+                    v-model="form.pass"
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col class="" cols="12" xl="6" lg="6" md="6" sm="12" xs="12">
+                  <v-text-field
+                    prepend-icon="mdi-lock"
+                    label="Confirmar Contraseña"
+                    type="text"
+                    v-model="form.confirmPass"
+                    :rules="passRules"
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-text-field
+                prepend-icon="mdi-account"
+                label="Nombre Completo"
+                type="text"
+                class=""
+                v-model="form.nombreCompleto"
               >
-                REGISTRARME
-              </v-btn>
-
-            </v-card-actions>
-            <v-row justify="center" justify-sm="center">
-              <v-card-actions class="mt-0 pt-0">
+              </v-text-field>
+              <v-card-actions class="mb-6 mt-4">
                 <v-btn
-                  depressed
-                  text
-                  color="cyan"
-                  @click="$store.state.loginStep = 0"
+                  block
+                  outlined
+                  color="blue"
+                  elevation="6"
+                  @click="registerUser(form)"
                 >
-                  <v-icon left> mdi-arrow-left-bold </v-icon>
-                  Ya tengo una cuenta
+                  REGISTRARME
                 </v-btn>
               </v-card-actions>
-            </v-row>
-          </v-form>
+              <v-row justify="center" justify-sm="center">
+                <v-card-actions class="mt-0 pt-0">
+                  <v-btn
+                    depressed
+                    text
+                    color="cyan"
+                    @click="$store.state.loginStep = 0"
+                  >
+                    <v-icon left> mdi-arrow-left-bold </v-icon>
+                    Ya tengo una cuenta
+                  </v-btn>
+                </v-card-actions>
+              </v-row>
+            </v-form>
           </v-window-item>
         </v-window>
-      </v-card>    
-      </div>      
+      </v-card>
+    </div>
   </body>
 </template>
 
 <script>
-import {auth, fr } from "../../main.js"
+import { auth, fr } from "../../main.js";
 export default {
   name: "login",
   components: {},
   data() {
-    return {    
-      newLoginDate:"",
-      valid:"",
-      emailRules: [ 
-        v => !v ||  /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(v)  || 'E-mail must be valid'        
+    return {
+      newLoginDate: "",
+      valid: "",
+      emailRules: [
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
       ],
       passRules: [
-        v => !v || v == this.form.pass || 'Contras iguales deben ser'
+        (v) => !v || v == this.form.pass || "Contras iguales deben ser",
       ],
-      form:{        
-        nombreCompleto:"",
-        correo:"",
-        pass:"",
-        confirmPass:"",
+      form: {
+        nombreCompleto: "",
+        correo: "",
+        pass: "",
+        confirmPass: "",
       },
-      loginCorreo:"",
-      loginPass:"",      
+      loginCorreo: "",
+      loginPass: "",
     };
   },
-  methods:{        
-      registerUser(){      
-      auth.createUserWithEmailAndPassword(this.form.correo, this.form.pass)
-      .then((response) => {
-        const usuario = {
-          nombreCompleto: this.form.nombreCompleto,
-          correo: this.form.correo,     
-          fechaRegistro: response.user.metadata.creationTime,
-          fechaLogin: response.user.metadata.lastSignInTime,
-        };
-        this.guardarDatos(response.user.uid,usuario);  
-        console.log("auth data: ",response);      
-      })
-      .catch((error) => {
+  methods: {
+    registerUser() {
+      auth
+        .createUserWithEmailAndPassword(this.form.correo, this.form.pass)
+        .then((response) => {
+          const usuario = {
+            nombreCompleto: this.form.nombreCompleto,
+            correo: this.form.correo,
+            fechaRegistro: response.user.metadata.creationTime,
+            fechaLogin: response.user.metadata.lastSignInTime,
+          };
+          this.guardarDatos(response.user.uid, usuario);
+          console.log("auth data: ", response);
+        })
+        .catch((error) => {
           switch (error.code) {
             case "auth/email-already-in-use":
               alert("El correo  proporcionado ya esta en uso..");
@@ -190,54 +191,59 @@ export default {
               alert("Registro no disponbible");
               break;
             case "auth/weak-password":
-              alert("La contraseña debe tener mayúsculas, minúsculas y números.");
+              alert(
+                "La contraseña debe tener mayúsculas, minúsculas y números."
+              );
               break;
           }
-        });        
-    },
-    guardarDatos(id,userData){    
-      fr.collection("users")
-      .doc(id)
-      .set(userData)
-      .then(() => {
-        window.sessionStorage.setItem("key",id);
-        window.sessionStorage.setItem("user",JSON.stringify(userData));
-        this.$router.push({ name: "Home" });
-      })
-      .catch((error) => {
-          console.error("Error writing document: ", error);
-         alert("error");
         });
     },
-     login(){      
-      auth.signInWithEmailAndPassword(this.loginCorreo, this.loginPass)
-      .then((response) => {        
-        window.sessionStorage.setItem("key", response.user.uid)        
-        this.newLoginDate = response.user.metadata.lastSignInTime;
-        fr.collection("users")        
-        .doc(response.user.uid)
-        .get()
-        .then((resp) => {
-          window.sessionStorage.setItem("user",JSON.stringify(resp.data()));                 
-          fr.collection("users")
-          .doc(window.sessionStorage.getItem("key"))
-          .update({fechaLogin:this.newLoginDate})  
-          this.$router.push({ name: "Home" }); 
+    guardarDatos(id, userData) {
+      fr.collection("users")
+        .doc(id)
+        .set(userData)
+        .then(() => {
+          window.sessionStorage.setItem("key", id);
+          window.sessionStorage.setItem("user", JSON.stringify(userData));
+          this.$router.push({ name: "Home" });
         })
-        
-      })
-      .catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          alert('Wrong password.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-      });     
-    },  
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+          alert("error");
+        });
+    },
+    login() {
+      auth
+        .signInWithEmailAndPassword(this.loginCorreo, this.loginPass)
+        .then((response) => {
+          window.sessionStorage.setItem("key", response.user.uid);
+          this.newLoginDate = response.user.metadata.lastSignInTime;
+          fr.collection("users")
+            .doc(response.user.uid)
+            .get()
+            .then((resp) => {
+              window.sessionStorage.setItem(
+                "user",
+                JSON.stringify(resp.data())
+              );
+              fr.collection("users")
+                .doc(window.sessionStorage.getItem("key"))
+                .update({ fechaLogin: this.newLoginDate });
+              this.$router.push({ name: "Home" });
+            });
+        })
+        .catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === "auth/wrong-password") {
+            alert("Wrong password.");
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
+    },
   },
 };
 </script>

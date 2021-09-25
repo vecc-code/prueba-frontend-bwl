@@ -16,49 +16,47 @@
 </template>
 
 <script>
-import {auth, fr} from "../main.js"
+import { auth, fr } from "../main.js";
 export default {
-  
   name: "tablaUsuarios",
   data() {
-    return { 
-      tablaInfo:[],
-      userInfo:[],
-      strDateTime:"",
-      myDate:[],
+    return {
+      tablaInfo: [],
+      userInfo: [],
+      strDateTime: "",
+      myDate: [],
       headers: [
         {
           text: "Nombre",
           align: "start",
           sortable: false,
-          value: "nombreCompleto",          
+          value: "nombreCompleto",
         },
         { text: "Correo Electronico", value: "correo" },
         { text: "Fecha registro", value: "fechaRegistro" },
-        { text: "Ultimo Login", value: "fechaLogin" },       
+        { text: "Ultimo Login", value: "fechaLogin" },
       ],
-
     };
   },
   components: {},
   methods: {
-    getUserData(){
+    getUserData() {
       const user = JSON.parse(window.sessionStorage.getItem("user"));
-      this.userInfo = user;      
+      this.userInfo = user;
       const userDe = auth.currentUser;
-      console.log("auth: ",userDe);
-    },    
-    getTableData(){
+      console.log("auth: ", userDe);
+    },
+    getTableData() {
       const resultados = [];
       fr.collection("users")
-      .get()
-      .then(snapshot => {
-        snapshot.docs.forEach(resultado => {
-          let appObjet = {...resultado.data()}
-          resultados.push(appObjet);          
-        })
-        this.tablaInfo = resultados;        
-      })
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((resultado) => {
+            let appObjet = { ...resultado.data() };
+            resultados.push(appObjet);
+          });
+          this.tablaInfo = resultados;
+        });
     },
     // getFechaFormato(){
     //   const strDateTime = this.userInfo;
@@ -67,10 +65,10 @@ export default {
     //   console.log("Fecha Cambiada", strDateTime);
     // } ,
   },
-  mounted(){
+  mounted() {
     this.getUserData();
     this.getTableData();
-  }
+  },
 };
 </script>
 

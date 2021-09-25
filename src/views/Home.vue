@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {fr} from "../main.js"
+import { fr } from "../main.js";
 import navbar from "@/components/navbar.vue";
 import cartasHome from "@/components/cartasHome.vue";
 
@@ -20,23 +20,20 @@ export default {
     return {};
   },
   methods: {
-    async validate(){
-      const key = window.sessionStorage.getItem("key");      
-      if(key == null){        
-        this.$router.push({ name: "Login" }); 
-      }else{
-        const snapshot = await 
-        fr.collection("users")
-        .doc(key)
-        .get()                
-        console.log("La respoiestra:" ,snapshot)
-        if(!snapshot.exists){
-          this.$router.push({ name: "Login" }); 
+    async validate() {
+      const key = window.sessionStorage.getItem("key");
+      if (key == null) {
+        this.$router.push({ name: "Login" });
+      } else {
+        const snapshot = await fr.collection("users").doc(key).get();
+        console.log("La respoiestra:", snapshot);
+        if (!snapshot.exists) {
+          this.$router.push({ name: "Login" });
         }
       }
-    }
+    },
   },
-  mounted(){
+  mounted() {
     this.validate();
   },
   created() {},
