@@ -360,7 +360,7 @@ export default {
       paisName: "",
       paisImg: "",
       clima: [],
-      newHora: null,
+      newHora: "",
       userInfo: [],
     };
   },
@@ -372,7 +372,7 @@ export default {
   methods: {
     async getData(city) {
       let response = await fetch(
-        "http://api.timezonedb.com/v2.1/list-time-zone?key=TMTQ32PJM68R&format=json&country=" +
+        "https://api.timezonedb.com/v2.1/list-time-zone?key=TMTQ32PJM68R&format=json&country=" +
           city
       );
       const result = await response.json();
@@ -408,14 +408,10 @@ export default {
     },
     async setHorayClima(nombreDeZona) {
       console.log(
-        "http://api.weatherapi.com/v1/current.json?key=0aa62ac6ab564f0899811732212409&q&q=" +
-          nombreDeZona +
-          "&aqi=yes"
+        "http://api.weatherapi.com/v1/current.json?key=0aa62ac6ab564f0899811732212409&q&q=" + nombreDeZona + "&aqi=yes"
       );
       let response = await fetch(
-        "https://api.weatherapi.com/v1/forecast.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" +
-          nombreDeZona +
-          "&days=1&aqi=no&alerts=yes"
+        "https://api.weatherapi.com/v1/forecast.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" + nombreDeZona + "&days=1&aqi=no&alerts=yes"
       );
       this.clima = await response.json();
       console.log(this.clima.current.temp_c);
@@ -423,17 +419,14 @@ export default {
     },
     async setHoraReal(nombreDeZona) {
       let response = await fetch(
-        "https://api.weatherapi.com/v1/timezone.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" +
-          nombreDeZona
+        "https://api.weatherapi.com/v1/timezone.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" + nombreDeZona
       );
       this.hora = await response.json();
       console.log(
         new Date(this.hora.location.localtime_epoch).toLocaleTimeString()
       );
-      this.newHora = new Date(
-        this.hora.location.localtime_epoch
-      ).toLocaleTimeString();
-      // var date = new Date(this.hora.location.localtime_epoch)
+      this.newHora = new Date( this.hora.location.localtime_epoch).toLocaleTimeString();
+      // var date = new Date(this.hora.location.localtime_epoch);
     },
     getUserData() {
       const user = JSON.parse(window.sessionStorage.getItem("user"));
