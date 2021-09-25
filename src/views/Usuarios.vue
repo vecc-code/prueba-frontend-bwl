@@ -33,7 +33,7 @@ export default {
           this.$router.push({ name: "Login" }); 
         }
       }
-    }
+    },
   },
   mounted(){
     this.validate();

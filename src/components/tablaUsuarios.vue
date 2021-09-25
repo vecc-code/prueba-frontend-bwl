@@ -21,9 +21,11 @@ export default {
   
   name: "tablaUsuarios",
   data() {
-    return {
+    return { 
       tablaInfo:[],
       userInfo:[],
+      strDateTime:"",
+      myDate:[],
       headers: [
         {
           text: "Nombre",
@@ -55,9 +57,15 @@ export default {
           let appObjet = {...resultado.data()}
           resultados.push(appObjet);          
         })
-        this.tablaInfo = resultados;
+        this.tablaInfo = resultados;        
       })
     },
+    // getFechaFormato(){
+    //   const strDateTime = this.userInfo;
+    //   const myDate = new Date(strDateTime);
+    //   alert(myDate.toLocaleString());
+    //   console.log("Fecha Cambiada", strDateTime);
+    // } ,
   },
   mounted(){
     this.getUserData();

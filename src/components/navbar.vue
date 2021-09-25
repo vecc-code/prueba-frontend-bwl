@@ -6,21 +6,42 @@
         <v-btn x-large text color="white" depressed plain href="/Usuarios">
           Usuarios
         </v-btn>
-        <v-spacer></v-spacer>              
+        <v-spacer></v-spacer>                      
         <v-avatar
         class="mt-1"
         color="primary"
         size="42">
          <span class="white--text text-h8">AN</span>
-        </v-avatar>        
-        <v-btn        
-        text
+        </v-avatar>      
+        <v-menu offset-y
+        bottom
+      origin="center center"
+      transition="scale-transition">
+          <template v-slot:activator="{on, attrs}">
+        <v-btn                
         color="white"
-        x-large
-        @click="logOut()"
+        x-large      
+        text
+        v-bind="attrs"
+        v-on="on"  
         >      
           {{userInfo.nombreCompleto}}
         </v-btn>        
+          </template>
+          <v-list light>
+            <v-list-item>
+              <v-list-item-title>
+                <v-btn   
+                plain                              
+                text
+                class="tab"        
+                @click="logOut()"
+                > Cerrar Sesion
+                </v-btn>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>        
       </v-row>
     </v-app-bar>
   </div>
@@ -69,7 +90,7 @@ export default {
 }
 .tab {
   color: #000000;
-  font-size: 18px;
+  font-weight: 400;
   font-family: "Poopins", sans-serif;
 }
 </style>
