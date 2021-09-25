@@ -140,9 +140,20 @@
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
                 <v-card-text class="mx-auto">
                   <v-row class="mt-3" justify="center">
-                    <v-col cols="12">
+                    <v-col cols="12">   
+                      <!-- <div class="hour">{{hours}}</div>
+                      <div class="dots">:</div>
+                      <div class="min">{{minutes}}</div>
+                      <div class="dots">:</div>
+                      <div class="secs">{{seconds}}</div>
+                      <div class="mode"></div>                  -->
+                      <!-- <div
+                      id="DigitalCLOCK"
+                      class="clock"
+                      onload="showTime()"
+                      ></div> -->                      
                       <h1 class="subtitulo">
-                        {{ newHora }}
+                        {{ newHora }}                        
                       </h1>
                     </v-col>
                   </v-row>
@@ -177,10 +188,10 @@
               </v-card>
             </v-col>
             <v-col cols="12" md="6">
-              <v-card elevation="4" outlined min-height="280px">
+              <v-card elevation="4" outlined min-height="280px">                                       
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
-                <v-divider class="mt-1 mx-3 color-linea"></v-divider>
+                <v-divider class="mt-1 mx-3 color-linea"></v-divider>                                
                 <v-row justify="center" class="">
                   <v-col
                     cols="12"
@@ -204,8 +215,8 @@
                       </v-btn>
                     </div>
                   </v-col>
-                </v-row>
-                <br />
+                </v-row>                
+                <br />                
               </v-card>
             </v-col>
           </v-row>
@@ -306,6 +317,7 @@
                 </div>
               </v-col>
             </v-row>
+            <v-divider class="mt-4 mx-3"></v-divider>
             <v-row class="mt-6" justify="space-around">
               <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" mx-auto>
                 <div class="d-flex justify-center">
@@ -361,13 +373,31 @@ export default {
       paisImg: "",
       clima: [],
       newHora: "",
-      userInfo: [],
+      userInfo: [],   
+      time: null,
+      interval: null,
+      // hours: 0,
+      // minutes: 0,
+      // seconds: 0,     
     };
   },
+  // beforeDestroy(){
+  //   clearInterval(this.interval)
+  // },
+  // created(){
+  //   this.interval = setInterval(() => {
+  //     this.time = Intl.DateTimeFormat(navigator.language,{
+  //       hour: 'numeric',
+  //       minute: 'numeric',
+  //       second: 'numeric',
+  //     }).format()
+  //   }, 1000)
+  // },
   mounted() {
     this.setPais("MX");
     //this.setHorayClima(this.timeZones.zones[0].zoneName);
     this.getUserData();
+    this.setTime();
   },
   methods: {
     async getData(city) {
@@ -424,13 +454,54 @@ export default {
       this.hora = await response.json();    
       this.newHora = new Date( (this.hora.location.localtime_epoch) * 1000 ).toLocaleTimeString();
       console.log(new Date(this.hora.location.localtime_epoch).toLocaleTimeString());
+      console.log("Hora real:", this.newHora);  
+      //console.log("String a numero:", parseInt(this.newHora[0,1]), parseInt(this.newHora[3,4]));    
       // var date = new Date(this.hora.location.localtime_epoch);
     },
     getUserData() {
       const user = JSON.parse(window.sessionStorage.getItem("user"));
       this.userInfo = user;
       console.log(this.userInfo);
-    },
+    },    
+    // showTime(){
+    
+    // var h = parseInt(this.newHora); 
+    // var m = parseInt(this.newHora[3] , this.newHora[4]); 
+    // var s = parseInt(this.newHora[6], this.newHora[7]); 
+    // var session = "AM";
+    
+    // if(h == 0){
+    //     h = 12;
+    // }
+    
+    // if(h > 12){
+    //     h = h - 12;
+    //     session = "PM";
+    // }
+    
+    // h = (h < 10) ? "0" + h : h;
+    // m = (m < 10) ? "0" + m : m;
+    // s = (s < 10) ? "0" + s : s;
+    
+    // var time = h + ":" + m + ":" + s + " " + session;
+    // document.getElementById("DigitalCLOCK").innerText = time;
+    // document.getElementById("DigitalCLOCK").textContent = time;
+    // setTimeout(this.showTime, 1000);
+    // },
+
+    // setTime () {
+    //   setInterval(() => {
+    //     //const date = new Date()
+    //     for(var i= 0; i< this.newHora.length; i++) this.newHora[i] = +this.newHora[i];                      
+    //     this.hours = this.newHora;
+    //     this.minutes = this.newHora;
+    //     this.seconds = this.newHora;
+    //   }, 1000)      
+    // },    
+
+    // // checkSingleDigit (digit) {
+    // //   return ('0' + digit).slice(-2)
+    // // },
   },
 };
 </script>
@@ -443,6 +514,12 @@ p {
   font-weight: 200px;
   font-size: 19px;
   text-align: justify;
+}
+.clock{
+  transform: translateX(-50%) translateY(-50%);
+  color: #ff4747;
+  font-size: 60px;  
+  letter-spacing: 7px;
 }
 .titulo {
   font-family: "Poppins";
