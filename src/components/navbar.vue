@@ -9,8 +9,9 @@
           Usuarios
         </v-btn>
         <v-spacer></v-spacer>
-        <v-avatar class="mt-1" color="primary" size="42">
-          <span 
+        <v-avatar class="mt-1" 
+        :color="getColorBack()" size="42">
+          <span           
           class="white--text text-h8"
           >
           {{inicialNombres}} 
@@ -79,7 +80,17 @@ export default {
       let text = a[0].toString() + a[1].toString();
       this.inicialNombres = text;          
     },
-    
+    getColorBack() {
+      let a = 1;
+      let b = 6;
+      let numeroAleatorio = a + Math.floor(Math.random() * b);
+      if (numeroAleatorio == 1) return "#E91E63";
+      else if (numeroAleatorio == 2) return "#7E57C2";
+      else if (numeroAleatorio == 3) return "#82b1ff";
+      else if (numeroAleatorio == 4) return "#64DD17";
+      else if (numeroAleatorio == 5) return "#FF9800";
+      else if (numeroAleatorio == 6) return "#BA68C8";
+    },
   },
   mounted() {
     this.getUserData();
