@@ -38,7 +38,7 @@
               </v-btn>
             </v-card-actions>
 
-            <v-row class="" justify-sm="center">
+            <v-row class="" justify-sm="center" >
               <v-col class="" cols="12" xl="8" lg="8" md="8" sm="12" xs="12">
                 <v-card-text> ¿No tienes una cuenta? </v-card-text>
               </v-col>
@@ -81,8 +81,9 @@
                   <v-text-field
                     prepend-icon="mdi-lock"
                     label="Contraseña"
-                    type="text"
+                    type="password"
                     v-model="form.pass"
+                    :rules="passRules"
                   >
                   </v-text-field>
                 </v-col>
@@ -90,7 +91,7 @@
                   <v-text-field
                     prepend-icon="mdi-lock"
                     label="Confirmar Contraseña"
-                    type="text"
+                    type="password"
                     v-model="form.confirmPass"
                     :rules="passRules"
                   >
@@ -179,8 +180,8 @@ export default {
           this.guardarDatos(response.user.uid, usuario);
           console.log("auth data: ", response);
         })
-        .catch((error) => {
-          switch (error.code) {
+        .catch((error) => {                            
+          switch (error.code) {            
             case "auth/email-already-in-use":
               alert("El correo  proporcionado ya esta en uso..");
               break;
@@ -243,7 +244,7 @@ export default {
           }
           console.log(error);
         });
-    },
+    },        
   },
 };
 </script>

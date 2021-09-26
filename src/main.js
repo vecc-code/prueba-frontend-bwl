@@ -3,11 +3,14 @@ import App from "./App.vue";
 import router from "./router/index.js";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import VueSweetalert2 from 'vue-sweetalert2';
 
 import axios from "axios";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
+
+Vue.use(VueSweetalert2);
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
