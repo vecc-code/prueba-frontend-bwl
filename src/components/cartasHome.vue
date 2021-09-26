@@ -1,7 +1,7 @@
 <template>
   <div class="cartasHome">
     <v-container fluid>
-      <v-row class="mt-4">
+      <v-row class="mt-4 mb-6">
         <v-col cols="12" md="8">
           <v-row>
             <v-col cols="12" md="6">
@@ -188,7 +188,7 @@
               </v-card>
             </v-col>
             <v-col cols="12" md="6">
-              <v-card elevation="4" outlined min-height="280px">                                       
+              <v-card elevation="4" outlined min-height="200px" max-height="200px" class="scroll">                                       
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>                                
@@ -203,7 +203,7 @@
                     class="pb-0 pt-2"
                     v-for="item in timeZones.zones"
                     :key="item.id"
-                  >
+                  >                  
                     <div class="d-flex justify-left">
                       <v-btn
                         plain
@@ -213,10 +213,9 @@
                       >
                         {{ item.zoneName }}
                       </v-btn>
-                    </div>
+                    </div>                  
                   </v-col>
-                </v-row>                
-                <br />                
+                </v-row>                                           
               </v-card>
             </v-col>
           </v-row>
@@ -514,6 +513,9 @@ p {
   font-weight: 200px;
   font-size: 19px;
   text-align: justify;
+}
+.scroll{
+  overflow-y : scroll;
 }
 .clock{
   transform: translateX(-50%) translateY(-50%);
