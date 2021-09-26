@@ -41,7 +41,7 @@
                       xs="12"
                       class="mt-4 mx-0 px-0"
                     >
-                      <h1 class="subtitulo">{{ clima.current.temp_c }} C</h1>
+                      <h1 class="subtitulo">{{ clima.current.temp_c }} ºC</h1>
                       <div class="d-flex justify-center">
                         <p class="">
                           {{ clima.current.condition.text }}
