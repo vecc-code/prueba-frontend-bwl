@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router/index.js";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from "vue-sweetalert2";
 
 import axios from "axios";
 import firebase from "firebase/compat/app";

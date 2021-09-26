@@ -58,12 +58,12 @@ export default {
           this.tablaInfo = resultados;
         });
     },
-    getFechaFormato(){
+    getFechaFormato() {
       const strDateTime = this.userInfo;
       const myDate = new Date(strDateTime);
       alert(myDate.toLocaleString());
       console.log("Fecha Cambiada", myDate);
-    } ,
+    },
   },
   mounted() {
     this.getUserData();

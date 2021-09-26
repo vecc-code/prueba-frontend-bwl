@@ -9,12 +9,9 @@
           Usuarios
         </v-btn>
         <v-spacer></v-spacer>
-        <v-avatar class="mt-1" 
-        :color="getColorBack()" size="42">
-          <span           
-          class="white--text text-h8"
-          >
-          {{inicialNombres}} 
+        <v-avatar class="mt-1" :color="getColorBack()" size="42">
+          <span class="white--text text-h8">
+            {{ inicialNombres }}
           </span>
         </v-avatar>
         <v-menu
@@ -50,7 +47,7 @@ export default {
     return {
       texto: "",
       userInfo: [],
-      inicialNombres:"",      
+      inicialNombres: "",
     };
   },
   components: {},
@@ -65,20 +62,20 @@ export default {
       window.sessionStorage.removeItem("user");
       this.$router.push({ name: "Login" });
     },
-    nombreAvatar(){
-      let a= [];
-      let resultado= [];
+    nombreAvatar() {
+      let a = [];
+      let resultado = [];
       let cadena = this.userInfo.nombreCompleto,
-      separador = " ",
-      arregloDeSubcadenas = cadena.split(separador);
-      
-      for (let x= 0 ; x < arregloDeSubcadenas.length; x++) {
-        resultado = arregloDeSubcadenas[x].substring(0,1);
-        a[x] =  resultado;                
-        console.log("nomrbe avatar: " , a);
+        separador = " ",
+        arregloDeSubcadenas = cadena.split(separador);
+
+      for (let x = 0; x < arregloDeSubcadenas.length; x++) {
+        resultado = arregloDeSubcadenas[x].substring(0, 1);
+        a[x] = resultado;
+        console.log("nomrbe avatar: ", a);
       }
       let text = a[0].toString() + a[1].toString();
-      this.inicialNombres = text;          
+      this.inicialNombres = text;
     },
     getColorBack() {
       let a = 1;

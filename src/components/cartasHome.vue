@@ -140,7 +140,7 @@
                 <v-divider class="mt-1 mx-3 color-linea"></v-divider>
                 <v-card-text class="mx-auto">
                   <v-row class="mt-3" justify="center">
-                    <v-col cols="12">   
+                    <v-col cols="12">
                       <!-- <div class="hour">{{hours}}</div>
                       <div class="dots">:</div>
                       <div class="min">{{minutes}}</div>
@@ -151,9 +151,9 @@
                       id="DigitalCLOCK"
                       class="clock"
                       onload="showTime()"
-                      ></div> -->                      
+                      ></div> -->
                       <h1 class="subtitulo">
-                        {{ newHora }}                        
+                        {{ newHora }}
                       </h1>
                     </v-col>
                   </v-row>
@@ -188,10 +188,16 @@
               </v-card>
             </v-col>
             <v-col cols="12" md="6">
-              <v-card elevation="4" outlined min-height="200px" max-height="200px" class="scroll">                                       
+              <v-card
+                elevation="4"
+                outlined
+                min-height="200px"
+                max-height="200px"
+                class="scroll"
+              >
                 <div class="titulo-tar margen-iz">Zonas Horarias</div>
 
-                <v-divider class="mt-1 mx-3 color-linea"></v-divider>                                
+                <v-divider class="mt-1 mx-3 color-linea"></v-divider>
                 <v-row justify="center" class="">
                   <v-col
                     cols="12"
@@ -203,7 +209,7 @@
                     class="pb-0 pt-2"
                     v-for="item in timeZones.zones"
                     :key="item.id"
-                  >                  
+                  >
                     <div class="d-flex justify-left">
                       <v-btn
                         plain
@@ -213,9 +219,9 @@
                       >
                         {{ item.zoneName }}
                       </v-btn>
-                    </div>                  
+                    </div>
                   </v-col>
-                </v-row>                                           
+                </v-row>
               </v-card>
             </v-col>
           </v-row>
@@ -372,12 +378,12 @@ export default {
       paisImg: "",
       clima: [],
       newHora: "",
-      userInfo: [],   
+      userInfo: [],
       time: null,
       interval: null,
       // hours: 0,
       // minutes: 0,
-      // seconds: 0,     
+      // seconds: 0,
     };
   },
   // beforeDestroy(){
@@ -437,10 +443,14 @@ export default {
     },
     async setHorayClima(nombreDeZona) {
       console.log(
-        "http://api.weatherapi.com/v1/current.json?key=0aa62ac6ab564f0899811732212409&q&q=" + nombreDeZona + "&aqi=yes"
+        "http://api.weatherapi.com/v1/current.json?key=0aa62ac6ab564f0899811732212409&q&q=" +
+          nombreDeZona +
+          "&aqi=yes"
       );
       let response = await fetch(
-        "https://api.weatherapi.com/v1/forecast.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" + nombreDeZona + "&days=1&aqi=no&alerts=yes"
+        "https://api.weatherapi.com/v1/forecast.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" +
+          nombreDeZona +
+          "&days=1&aqi=no&alerts=yes"
       );
       this.clima = await response.json();
       console.log(this.clima.current.temp_c);
@@ -448,40 +458,45 @@ export default {
     },
     async setHoraReal(nombreDeZona) {
       let response = await fetch(
-        "https://api.weatherapi.com/v1/timezone.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" + nombreDeZona
+        "https://api.weatherapi.com/v1/timezone.json?key=0aa62ac6ab564f0899811732212409&q&q&q=" +
+          nombreDeZona
       );
-      this.hora = await response.json();    
-      this.newHora = new Date( (this.hora.location.localtime_epoch) * 1000 ).toLocaleTimeString();
-      console.log(new Date(this.hora.location.localtime_epoch).toLocaleTimeString());
-      console.log("Hora real:", this.newHora);  
-      //console.log("String a numero:", parseInt(this.newHora[0,1]), parseInt(this.newHora[3,4]));    
+      this.hora = await response.json();
+      this.newHora = new Date(
+        this.hora.location.localtime_epoch * 1000
+      ).toLocaleTimeString();
+      console.log(
+        new Date(this.hora.location.localtime_epoch).toLocaleTimeString()
+      );
+      console.log("Hora real:", this.newHora);
+      //console.log("String a numero:", parseInt(this.newHora[0,1]), parseInt(this.newHora[3,4]));
       // var date = new Date(this.hora.location.localtime_epoch);
     },
     getUserData() {
       const user = JSON.parse(window.sessionStorage.getItem("user"));
       this.userInfo = user;
       console.log(this.userInfo);
-    },    
+    },
     // showTime(){
-    
-    // var h = parseInt(this.newHora); 
-    // var m = parseInt(this.newHora[3] , this.newHora[4]); 
-    // var s = parseInt(this.newHora[6], this.newHora[7]); 
+
+    // var h = parseInt(this.newHora);
+    // var m = parseInt(this.newHora[3] , this.newHora[4]);
+    // var s = parseInt(this.newHora[6], this.newHora[7]);
     // var session = "AM";
-    
+
     // if(h == 0){
     //     h = 12;
     // }
-    
+
     // if(h > 12){
     //     h = h - 12;
     //     session = "PM";
     // }
-    
+
     // h = (h < 10) ? "0" + h : h;
     // m = (m < 10) ? "0" + m : m;
     // s = (s < 10) ? "0" + s : s;
-    
+
     // var time = h + ":" + m + ":" + s + " " + session;
     // document.getElementById("DigitalCLOCK").innerText = time;
     // document.getElementById("DigitalCLOCK").textContent = time;
@@ -491,12 +506,12 @@ export default {
     // setTime () {
     //   setInterval(() => {
     //     //const date = new Date()
-    //     for(var i= 0; i< this.newHora.length; i++) this.newHora[i] = +this.newHora[i];                      
+    //     for(var i= 0; i< this.newHora.length; i++) this.newHora[i] = +this.newHora[i];
     //     this.hours = this.newHora;
     //     this.minutes = this.newHora;
     //     this.seconds = this.newHora;
-    //   }, 1000)      
-    // },    
+    //   }, 1000)
+    // },
 
     // // checkSingleDigit (digit) {
     // //   return ('0' + digit).slice(-2)
@@ -514,13 +529,13 @@ p {
   font-size: 19px;
   text-align: justify;
 }
-.scroll{
-  overflow-y : scroll;
+.scroll {
+  overflow-y: scroll;
 }
-.clock{
+.clock {
   transform: translateX(-50%) translateY(-50%);
   color: #ff4747;
-  font-size: 60px;  
+  font-size: 60px;
   letter-spacing: 7px;
 }
 .titulo {
